@@ -7,14 +7,14 @@ export async function POST(req: Request) {
     if (!prompt) {
       return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
     }
-
+    const modifiedPrompt = `${prompt} with respect to indian penal code and indian law`
     const geminiResponse = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyD3q9BTFrCwx1tBIqk9gD_2F1Gla7_FLm8`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
+          contents: [{ parts: [{ text: modifiedPrompt }] }],
         }),
       }
     );
